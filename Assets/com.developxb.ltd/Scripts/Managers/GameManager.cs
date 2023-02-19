@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject menu;
     [SerializeField] GameObject game;
+    [SerializeField] GameObject pause;
     [SerializeField] GameObject result;
 
     [Space(10)]
@@ -18,15 +19,10 @@ public class GameManager : MonoBehaviour
     private void Init()
     {
         game.SetActive(false);
+        pause.SetActive(false);
         result.SetActive(false);
 
         menu.SetActive(true);
-    }
-
-    private void GameOver()
-    {
-        game.SetActive(false);
-        result.SetActive(true);
     }
 
     public void StartGame()
@@ -39,9 +35,17 @@ public class GameManager : MonoBehaviour
         scoreText.text = finalScoreText.text = $"SCORE {score}";
     }
 
+    public void Pause(bool IsPause)
+    {
+        game.SetActive(!IsPause);
+        pause.SetActive(IsPause);
+    }
+
     public void OpenMenu()
     {
         result.SetActive(false);
+        pause.SetActive(false);
+
         menu.SetActive(true);
     }
 
