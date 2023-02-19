@@ -27,12 +27,20 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        if(FindObjectOfType<Level>())
+        {
+            Destroy(FindObjectOfType<Level>());
+        }
+
+        Instantiate(Resources.Load<Level>("level"), GameObject.Find("Environment").transform);
+
         result.SetActive(false);
         menu.SetActive(false);
         game.SetActive(true);
 
         score = 0;
-        scoreText.text = finalScoreText.text = $"SCORE {score}";
+        scoreText.text = $"{score}";
+        finalScoreText.text = $"SCORE {score}";
     }
 
     public void Pause(bool IsPause)
